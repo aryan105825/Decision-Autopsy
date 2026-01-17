@@ -1,12 +1,13 @@
 import { Router } from "express";
 import { prisma } from "../prisma";
 import { runAnalysis } from "../ai/runAnalysis";
-
+import { Request, Response } from "express";
+import { paramToString } from "../utils/param";
 const router = Router();
 
-router.post("/:decisionId", async (req, res) => {
+router.post("/:decisionId", async (req:Request, res:Response) => {
   const decision = await prisma.decision.findUnique({
-    where: { id: req.params.decisionId },
+where: { id: paramToString(req.params.decisionId) },
   });
 
   if (!decision) return res.sendStatus(404);

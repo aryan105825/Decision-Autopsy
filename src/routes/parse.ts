@@ -2,10 +2,10 @@ import { Router } from "express";
 import { groq } from "../ai/groq";
 import { PARSE_PROMPT } from "../ai/parsePrompt";
 import { safeJsonParse } from "../utils/jsonSafeParse";
-
+import { Request, Response } from "express";
 const router = Router();
 
-router.post("/", async (req, res) => {
+router.post("/", async (req:Request, res:Response) => {
     const { rawContext } = req.body;
 
     const completion = await groq.chat.completions.create({

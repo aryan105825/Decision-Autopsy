@@ -5,7 +5,8 @@ import { prisma } from "./prisma";
 import parseRoutes from "./routes/parse";
 import analysisRoutes from "./routes/analysis";
 import decisionRoutes from "./routes/decisions";
-
+import { Request, Response } from "express";
+import { paramToString } from "./utils/param";
 const app = express();
 
 app.use(cors());
@@ -16,7 +17,7 @@ app.use("/analysis", analysisRoutes);
 /**
  * Create Decision
  */
-app.post("/decisions", async (req, res) => {
+app.post("/decisions", async (req: Request, res: Response) => {
   const decision = await prisma.decision.create({
     data: req.body,
   });
@@ -26,9 +27,9 @@ app.post("/decisions", async (req, res) => {
 /**
  * Get Decision by ID
  */
-app.get("/decisions/:id", async (req, res) => {
+app.get("/decisions/:id", async (req: Request, res: Response) => {
   const decision = await prisma.decision.findUnique({
-    where: { id: req.params.id },
+    where: { id: paramToString(req.params.decisionId) },
   });
 
   if (!decision) return res.sendStatus(404);
@@ -38,9 +39,9 @@ app.get("/decisions/:id", async (req, res) => {
 /**
  * Attach Outcome (post-mortem)
  */
-app.patch("/decisions/:id/outcome", async (req, res) => {
+app.patch("/decisions/:id/outcome", async (req: Request, res: Response) => {
   const decision = await prisma.decision.update({
-    where: { id: req.params.id },
+    where: { id: paramToString(req.params.decisionId) },
     data: { outcome: req.body },
   });
 
