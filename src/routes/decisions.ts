@@ -36,13 +36,24 @@ router.get("/", async (req: Request, res: Response) => {
 /**
  * Get Decision + Analyses
  */
-router.get("/:id", async (req: Request, res: Response) => {
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  if (!id) {
+    return res.status(400).json({
+      error: "Decision ID is required",
+    });
+  }
+
   const decision = await prisma.decision.findUnique({
-    where: { id: paramToString(req.params.decisionId) },
+    where: { id },
     include: { analyses: true },
   });
 
-  if (!decision) return res.sendStatus(404);
+  if (!decision) {
+    return res.status(404).json({ error: "Decision not found" });
+  }
+
   res.json(decision);
 });
 
