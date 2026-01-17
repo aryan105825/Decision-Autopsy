@@ -1,0 +1,57 @@
+<svg
+  width="256"
+  height="256"
+  viewBox="0 0 256 256"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Background -->
+  <rect width="256" height="256" rx="28" fill="#0F172A"/>
+
+  <!-- Vertical timeline -->
+  <line
+    x1="128"
+    y1="40"
+    x2="128"
+    y2="216"
+    stroke="#94A3B8"
+    stroke-width="4"
+    stroke-linecap="round"
+  />
+
+  <!-- Decision nodes -->
+  <circle cx="128" cy="72" r="8" fill="#38BDF8"/>
+  <circle cx="128" cy="128" r="10" fill="#22D3EE"/>
+  <circle cx="128" cy="184" r="8" fill="#38BDF8"/>
+
+  <!-- Left analysis brackets -->
+  <path
+    d="M64 96 Q48 128 64 160"
+    stroke="#64748B"
+    stroke-width="4"
+    fill="none"
+    stroke-linecap="round"
+  />
+
+  <!-- Right analysis brackets -->
+  <path
+    d="M192 96 Q208 128 192 160"
+    stroke="#64748B"
+    stroke-width="4"
+    fill="none"
+    stroke-linecap="round"
+  />
+
+  <!-- Central lens / analysis core -->
+  <circle
+    cx="128"
+    cy="128"
+    r="22"
+    stroke="#E2E8F0"
+    stroke-width="3"
+    fill="none"
+  />
+
+  <!-- Crosshair -->
+  <line x1="118" y1="128" x2="138" y2="128" stroke="#E2E8F0" stroke-width="2"/>
+  <line x1="128" y1="118" x2="128" y2="138" stroke="#E2E8F0" stroke-width="2"/>
+</svg>
